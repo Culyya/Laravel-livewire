@@ -1,11 +1,14 @@
 <?php
 
 use App\Models\User;
-use function Livewire\Volt\{usesPagination, computed, state};
+use function Livewire\Volt\{usesPagination, computed, state, layout};
+
+layout('components.layouts.v2');
 
 usesPagination();
 
 state(['search'])->url();
+
 $users = computed(function () {
     return User::where('name', 'like', '%' . $this->search . '%')->latest()->paginate(5);
 });

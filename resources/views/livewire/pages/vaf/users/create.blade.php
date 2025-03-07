@@ -1,9 +1,13 @@
 <?php
 
 use App\Models\User;
-use function Livewire\Volt\{state};
+use function Livewire\Volt\{state, mount};
 
 state(['name', 'email', 'password']);
+
+mount(function () {
+    // ini mount
+});
 
 $save = function () {
     User::create(
@@ -13,10 +17,7 @@ $save = function () {
             'password' => bcrypt($this->password)
         ]
     );
-
-
     session()->flash('message', 'Data Berhasil Disimpan.');
-
     return redirect()->route('vaf.users.index');
 };
 

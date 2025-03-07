@@ -2,9 +2,12 @@
 
 use Livewire\Volt\Component;
 use App\Models\User;
+use Livewire\Attributes\Layout;
 use Livewire\WithPagination;
 
-new class extends Component {
+new
+#[Layout('components.layouts.v1')]
+class extends Component {
     use WithPagination;
 
     public $search;
@@ -32,6 +35,11 @@ new class extends Component {
 
 
         $this->dispatch('data-terhapus', title: 'Data berhasil di hapus', text: 'User Terhapus', icon: 'success');
+    }
+
+    public function updatedSearch()
+    {
+        $this->resetPage();
     }
 } ?>
 
